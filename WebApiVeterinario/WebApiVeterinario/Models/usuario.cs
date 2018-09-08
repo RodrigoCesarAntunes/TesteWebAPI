@@ -22,16 +22,15 @@ namespace WebApiVeterinario.Models
             this.payment = new HashSet<payment>();
         }
     
+        public int id { get; set; }
         public string nome { get; set; }
         public string email { get; set; }
-        public int id { get; set; }
         public string cpf_cnpj { get; set; }
         public string cellphone { get; set; }
-        public string telephone { get; set; }
         public Nullable<int> age { get; set; }
         public string address { get; set; }
         public string cep { get; set; }
-        public string reference { get; set; }
+        public string foto { get; set; }
     
         public virtual Autenticacao Autenticacao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

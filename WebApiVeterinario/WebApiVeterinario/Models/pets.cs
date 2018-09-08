@@ -18,22 +18,25 @@ namespace WebApiVeterinario.Models
         public pets()
         {
             this.consulta = new HashSet<consulta>();
+            this.Pet_fotos = new HashSet<Pet_fotos>();
         }
     
         public int pet_id { get; set; }
         public string nome { get; set; }
+        public string what_pet { get; set; }
         public string breed { get; set; }
         public Nullable<decimal> wheight { get; set; }
         public string size { get; set; }
         public string description { get; set; }
-        public byte[] gender { get; set; }
+        public string gender { get; set; }
         public Nullable<int> age { get; set; }
-        public string what_pet { get; set; }
         public int cliente_pessoa_id { get; set; }
         public string cliente_pessoa_cpf { get; set; }
     
         public virtual cliente_pessoa cliente_pessoa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<consulta> consulta { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pet_fotos> Pet_fotos { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace WebApiVeterinario.Controllers
         private VeterinarioEntities vetDb = new VeterinarioEntities();
 
         [HttpPost]
-        public void AddPet(string email, string senha, string nome, string breed, decimal peso, string tamanho, string descricao,string genero, string idade, string especie)
+        public void AddPet(string email, string senha, string nome, string breed, decimal peso, string tamanho,string descricao,string genero, string idade, string especie)
         {
         
             if (usuarioObjeto.TestarSenha(senha, email) != true)
@@ -36,6 +36,7 @@ namespace WebApiVeterinario.Controllers
                 wheight = peso,
                 size = tamanho,
                 description = descricao,
+                gender = genero,
                 age = 4,
                 cliente_pessoa_cpf = dono.usuario_cpf_cnpj,
                 cliente_pessoa_id = dono.id,
@@ -59,5 +60,21 @@ namespace WebApiVeterinario.Controllers
                 }
             }    
         }   
+
+        [HttpDelete]
+        public String removerPet(int id)
+        {
+            try
+            {
+                pets pets = vetDb.pets.Find(id);
+                vetDb.pets.Remove(pets);
+                vetDb.SaveChanges();
+                return "Pet removido com sucesso";
+            }
+            catch(Exception e)
+            {
+                return "Algo deu errado";
+            }
+        }
     }
 }

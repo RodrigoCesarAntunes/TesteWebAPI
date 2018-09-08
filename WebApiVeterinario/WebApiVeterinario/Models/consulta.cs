@@ -22,12 +22,12 @@ namespace WebApiVeterinario.Models
     
         public int consulta_id { get; set; }
         public Nullable<System.DateTime> data_hora { get; set; }
-        public byte[] is_valida { get; set; }
+        public Nullable<bool> is_valida { get; set; }
         public int cliente_comercio_id { get; set; }
         public string cliente_comercio_cnpj { get; set; }
         public Nullable<decimal> preco { get; set; }
         public int pets_pet_id { get; set; }
-        public byte[] iscancelada { get; set; }
+        public Nullable<bool> iscancelada { get; set; }
         public string quemcancelou { get; set; }
         public string motivo { get; set; }
     

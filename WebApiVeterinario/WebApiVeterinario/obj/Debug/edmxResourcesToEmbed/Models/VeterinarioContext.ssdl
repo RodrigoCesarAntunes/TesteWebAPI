@@ -32,12 +32,12 @@
     </Key>
     <Property Name="consulta_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="data_hora" Type="datetime" />
-    <Property Name="is_valida" Type="binary" MaxLength="1" />
+    <Property Name="is_valida" Type="bit" />
     <Property Name="cliente_comercio_id" Type="int" Nullable="false" />
     <Property Name="cliente_comercio_cnpj" Type="varchar" MaxLength="25" Nullable="false" />
     <Property Name="preco" Type="decimal" Precision="10" Scale="2" />
     <Property Name="pets_pet_id" Type="int" Nullable="false" />
-    <Property Name="iscancelada" Type="binary" MaxLength="1" />
+    <Property Name="iscancelada" Type="bit" />
     <Property Name="quemcancelou" Type="varchar" MaxLength="20" />
     <Property Name="motivo" Type="varchar" MaxLength="250" />
   </EntityType>
@@ -49,9 +49,17 @@
     <Property Name="card_number" Type="varchar" MaxLength="30" />
     <Property Name="card_owner" Type="varchar" MaxLength="30" />
     <Property Name="expire_date" Type="date" />
-    <Property Name="three_digits" Type="varchar" MaxLength="4" />
+    <Property Name="four_digits" Type="varchar" MaxLength="4" />
     <Property Name="usuario_id" Type="int" Nullable="false" />
     <Property Name="usuario_cpf_cnpj" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Pet_fotos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fotoCaminho" Type="varchar" MaxLength="200" />
+    <Property Name="pet_id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="pets">
     <Key>
@@ -59,13 +67,13 @@
     </Key>
     <Property Name="pet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nome" Type="varchar" MaxLength="100" />
+    <Property Name="what_pet" Type="varchar" MaxLength="50" />
     <Property Name="breed" Type="varchar" MaxLength="50" />
     <Property Name="wheight" Type="decimal" Precision="6" Scale="3" />
     <Property Name="size" Type="varchar" MaxLength="20" />
     <Property Name="description" Type="varchar" MaxLength="250" />
-    <Property Name="gender" Type="binary" MaxLength="1" />
+    <Property Name="gender" Type="varchar" MaxLength="1" />
     <Property Name="age" Type="int" />
-    <Property Name="what_pet" Type="varchar" MaxLength="50" />
     <Property Name="cliente_pessoa_id" Type="int" Nullable="false" />
     <Property Name="cliente_pessoa_cpf" Type="varchar" MaxLength="25" Nullable="false" />
   </EntityType>
@@ -86,16 +94,15 @@
       <PropertyRef Name="id" />
       <PropertyRef Name="cpf_cnpj" />
     </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="nome" Type="varchar" MaxLength="100" />
     <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="cpf_cnpj" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="cellphone" Type="varchar" MaxLength="30" />
-    <Property Name="telephone" Type="varchar" MaxLength="30" />
     <Property Name="age" Type="int" />
     <Property Name="address" Type="varchar" MaxLength="250" />
     <Property Name="cep" Type="varchar" MaxLength="20" />
-    <Property Name="reference" Type="varchar" MaxLength="250" />
+    <Property Name="foto" Type="varchar" MaxLength="200" />
   </EntityType>
   <Association Name="cliente_comercio_usuario_fk">
     <End Role="usuario" Type="Self.usuario" Multiplicity="1">
@@ -157,7 +164,19 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__usuario__referen__6EC0713C">
+  <Association Name="FK__Pet_fotos__pet_i__4D2A7347">
+    <End Role="pets" Type="Self.pets" Multiplicity="1" />
+    <End Role="Pet_fotos" Type="Self.Pet_fotos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pets">
+        <PropertyRef Name="pet_id" />
+      </Principal>
+      <Dependent Role="Pet_fotos">
+        <PropertyRef Name="pet_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__usuario__foto__54CB950F">
     <End Role="Autenticacao" Type="Self.Autenticacao" Multiplicity="1" />
     <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
     <ReferentialConstraint>
@@ -233,6 +252,7 @@
     <EntitySet Name="cliente_pessoa" EntityType="Self.cliente_pessoa" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="consulta" EntityType="Self.consulta" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="payment" EntityType="Self.payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pet_fotos" EntityType="Self.Pet_fotos" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="pets" EntityType="Self.pets" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
@@ -252,7 +272,11 @@
       <End Role="pets" EntitySet="pets" />
       <End Role="consulta" EntitySet="consulta" />
     </AssociationSet>
-    <AssociationSet Name="FK__usuario__referen__6EC0713C" Association="Self.FK__usuario__referen__6EC0713C">
+    <AssociationSet Name="FK__Pet_fotos__pet_i__4D2A7347" Association="Self.FK__Pet_fotos__pet_i__4D2A7347">
+      <End Role="pets" EntitySet="pets" />
+      <End Role="Pet_fotos" EntitySet="Pet_fotos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__usuario__foto__54CB950F" Association="Self.FK__usuario__foto__54CB950F">
       <End Role="Autenticacao" EntitySet="Autenticacao" />
       <End Role="usuario" EntitySet="usuario" />
     </AssociationSet>

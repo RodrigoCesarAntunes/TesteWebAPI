@@ -7,7 +7,7 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="Senha" Type="String" MaxLength="256" FixedLength="true" Unicode="false" Nullable="false" />
     <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <NavigationProperty Name="usuario" Relationship="Self.FK__usuario__referen__6EC0713C" FromRole="Autenticacao" ToRole="usuario" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK__usuario__foto__54CB950F" FromRole="Autenticacao" ToRole="usuario" />
   </EntityType>
   <EntityType Name="cliente_comercio">
     <Key>
@@ -38,12 +38,12 @@
     </Key>
     <Property Name="consulta_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="data_hora" Type="DateTime" Precision="3" />
-    <Property Name="is_valida" Type="Binary" MaxLength="1" FixedLength="true" />
+    <Property Name="is_valida" Type="Boolean" />
     <Property Name="cliente_comercio_id" Type="Int32" Nullable="false" />
     <Property Name="cliente_comercio_cnpj" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="preco" Type="Decimal" Precision="10" Scale="2" />
     <Property Name="pets_pet_id" Type="Int32" Nullable="false" />
-    <Property Name="iscancelada" Type="Binary" MaxLength="1" FixedLength="true" />
+    <Property Name="iscancelada" Type="Boolean" />
     <Property Name="quemcancelou" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="motivo" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <NavigationProperty Name="cliente_comercio" Relationship="Self.consulta_cliente_comercio_fk" FromRole="consulta" ToRole="cliente_comercio" />
@@ -58,10 +58,19 @@
     <Property Name="card_number" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="card_owner" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="expire_date" Type="DateTime" Precision="0" />
-    <Property Name="three_digits" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
+    <Property Name="four_digits" Type="String" MaxLength="4" FixedLength="false" Unicode="false" />
     <Property Name="usuario_id" Type="Int32" Nullable="false" />
     <Property Name="usuario_cpf_cnpj" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="usuario" Relationship="Self.payment_usuario_fk" FromRole="payment" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="Pet_fotos">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="fotoCaminho" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="pet_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="pets" Relationship="Self.FK__Pet_fotos__pet_i__4D2A7347" FromRole="Pet_fotos" ToRole="pets" />
   </EntityType>
   <EntityType Name="pets">
     <Key>
@@ -69,17 +78,18 @@
     </Key>
     <Property Name="pet_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="what_pet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="breed" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="wheight" Type="Decimal" Precision="6" Scale="3" />
     <Property Name="size" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
     <Property Name="description" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <Property Name="gender" Type="Binary" MaxLength="1" FixedLength="true" />
+    <Property Name="gender" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
     <Property Name="age" Type="Int32" />
-    <Property Name="what_pet" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="cliente_pessoa_id" Type="Int32" Nullable="false" />
     <Property Name="cliente_pessoa_cpf" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="cliente_pessoa" Relationship="Self.pets_cliente_pessoa_fk" FromRole="pets" ToRole="cliente_pessoa" />
     <NavigationProperty Name="consulta" Relationship="Self.consulta_pets_fk" FromRole="pets" ToRole="consulta" />
+    <NavigationProperty Name="Pet_fotos" Relationship="Self.FK__Pet_fotos__pet_i__4D2A7347" FromRole="pets" ToRole="Pet_fotos" />
   </EntityType>
   <EntityType Name="Services">
     <Key>
@@ -100,22 +110,21 @@
       <PropertyRef Name="id" />
       <PropertyRef Name="cpf_cnpj" />
     </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="nome" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
     <Property Name="email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="cpf_cnpj" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="cellphone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
-    <Property Name="telephone" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
     <Property Name="age" Type="Int32" />
     <Property Name="address" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
     <Property Name="cep" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-    <Property Name="reference" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="Autenticacao" Relationship="Self.FK__usuario__referen__6EC0713C" FromRole="usuario" ToRole="Autenticacao" />
+    <Property Name="foto" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Autenticacao" Relationship="Self.FK__usuario__foto__54CB950F" FromRole="usuario" ToRole="Autenticacao" />
     <NavigationProperty Name="cliente_comercio" Relationship="Self.cliente_comercio_usuario_fk" FromRole="usuario" ToRole="cliente_comercio" />
     <NavigationProperty Name="cliente_pessoa" Relationship="Self.cliente_pessoa_usuario_fk" FromRole="usuario" ToRole="cliente_pessoa" />
     <NavigationProperty Name="payment" Relationship="Self.payment_usuario_fk" FromRole="usuario" ToRole="payment" />
   </EntityType>
-  <Association Name="FK__usuario__referen__6EC0713C">
+  <Association Name="FK__usuario__foto__54CB950F">
     <End Role="Autenticacao" Type="Self.Autenticacao" Multiplicity="1" />
     <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
     <ReferentialConstraint>
@@ -245,16 +254,29 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK__Pet_fotos__pet_i__4D2A7347">
+    <End Role="pets" Type="Self.pets" Multiplicity="1" />
+    <End Role="Pet_fotos" Type="Self.Pet_fotos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pets">
+        <PropertyRef Name="pet_id" />
+      </Principal>
+      <Dependent Role="Pet_fotos">
+        <PropertyRef Name="pet_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <EntityContainer Name="VeterinarioEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="Autenticacao" EntityType="Self.Autenticacao" />
     <EntitySet Name="cliente_comercio" EntityType="Self.cliente_comercio" />
     <EntitySet Name="cliente_pessoa" EntityType="Self.cliente_pessoa" />
     <EntitySet Name="consulta" EntityType="Self.consulta" />
     <EntitySet Name="payment" EntityType="Self.payment" />
+    <EntitySet Name="Pet_fotos" EntityType="Self.Pet_fotos" />
     <EntitySet Name="pets" EntityType="Self.pets" />
     <EntitySet Name="Services" EntityType="Self.Services" />
     <EntitySet Name="usuario" EntityType="Self.usuario" />
-    <AssociationSet Name="FK__usuario__referen__6EC0713C" Association="Self.FK__usuario__referen__6EC0713C">
+    <AssociationSet Name="FK__usuario__foto__54CB950F" Association="Self.FK__usuario__foto__54CB950F">
       <End Role="Autenticacao" EntitySet="Autenticacao" />
       <End Role="usuario" EntitySet="usuario" />
     </AssociationSet>
@@ -289,6 +311,10 @@
     <AssociationSet Name="payment_usuario_fk" Association="Self.payment_usuario_fk">
       <End Role="usuario" EntitySet="usuario" />
       <End Role="payment" EntitySet="payment" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Pet_fotos__pet_i__4D2A7347" Association="Self.FK__Pet_fotos__pet_i__4D2A7347">
+      <End Role="pets" EntitySet="pets" />
+      <End Role="Pet_fotos" EntitySet="Pet_fotos" />
     </AssociationSet>
   </EntityContainer>
 </Schema>

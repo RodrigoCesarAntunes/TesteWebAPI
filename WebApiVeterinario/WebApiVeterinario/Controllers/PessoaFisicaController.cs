@@ -31,7 +31,7 @@ namespace WebApiVeterinario.Controllers
         }
 
         [HttpPost]
-        public void AddUser(string nome, string email, string cpf, string cell, string phone, int age, string address, string cep, string reference, string senha)
+        public void AddUser(string nome, string email, string cpf, string cell, int age, string address, string cep, string senha)
         {
             Password password = new Password();
 
@@ -49,11 +49,9 @@ namespace WebApiVeterinario.Controllers
                 email = email,
                 cpf_cnpj = cpf,
                 cellphone = cell,
-                telephone = phone,
                 age = age,
                 address = address,
                 cep = cep,
-                reference = reference,
                 Autenticacao = autenticacao,
             };
 

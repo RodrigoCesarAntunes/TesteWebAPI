@@ -30,6 +30,7 @@ namespace WebApiVeterinario.Models
         public virtual DbSet<cliente_pessoa> cliente_pessoa { get; set; }
         public virtual DbSet<consulta> consulta { get; set; }
         public virtual DbSet<payment> payment { get; set; }
+        public virtual DbSet<Pet_fotos> Pet_fotos { get; set; }
         public virtual DbSet<pets> pets { get; set; }
         public virtual DbSet<Services> Services { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
