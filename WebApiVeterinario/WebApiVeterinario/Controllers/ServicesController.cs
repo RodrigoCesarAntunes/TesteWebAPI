@@ -9,44 +9,38 @@ using WebApiVeterinario.Models;
 
 namespace WebApiVeterinario.Controllers
 {
-    public class PetController : ApiController
+    public class ServicesController : ApiController
     {
-        private Usuario usuarioObjeto = new Usuario();
         private VeterinarioEntities vetDb = new VeterinarioEntities();
+        private Usuario usuarioObjeto = new Usuario();
 
         [HttpPost]
-        public HttpResponseMessage AddPet(string email, string senha, string nome, string breed, decimal peso, string tamanho,string descricao,string genero, string idade, string especie)
+        public HttpResponseMessage AddService(string email, string senha ,string nome, string descricao, decimal preco)
         {
-        
-            if (usuarioObjeto.TestarSenha(senha, email) != true)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Usuário e/ou senha invalido(s)");
-
-            }
-            
-            cliente_pessoa dono = (from pessoa in vetDb.cliente_pessoa
-                                   where pessoa.usuario.email == email
-                                   select pessoa).Single();
-
-            pets pet = new pets()
-            {
-                nome = nome,
-                what_pet = especie,
-                breed = breed,
-                wheight = peso,
-                size = tamanho,
-                description = descricao,
-                gender = genero,
-                age = 4,
-                cliente_pessoa_cpf = dono.usuario_cpf_cnpj,
-                cliente_pessoa_id = dono.id,
-            };
-
-            dono.pets.Add(pet);
             try
             {
+                if (usuarioObjeto.TestarSenha(senha, email) != true)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Usuário e/ou senha invalido(s)");
+                }
+
+                cliente_comercio pj = (from comercio in vetDb.cliente_comercio
+                                       where comercio.usuario.email == email
+                                       select comercio).Single();
+
+                Services service = new Services()
+                {
+                    nome = nome,
+                    descricao = descricao,
+                    Preco = preco,
+                    Cliente_Comercio_CNPJ = pj.usuario_cpf_cnpj,
+                    Cliente_Comercio_ID = pj.id
+                };
+
+                pj.Services.Add(service);
                 vetDb.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, "Pet adicionado com sucesso!");
+
+                return Request.CreateResponse(HttpStatusCode.OK, "Serviço adicionado");
             }
             catch (DbEntityValidationException e)
             {
@@ -63,15 +57,16 @@ namespace WebApiVeterinario.Controllers
                 }
                 return Request.CreateErrorResponse(HttpStatusCode.NotAcceptable, erros);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                return Request.CreateErrorResponse(HttpStatusCode.NotFound, e.Message);
+                return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, e.Message);
             }
-        }   
+        }
 
         [HttpDelete]
-        public HttpResponseMessage DeletarPet(string senha, string email, int id)
+        public HttpResponseMessage DeletarServico(string senha, string email, int id)
         {
+
             if (usuarioObjeto.TestarSenha(senha, email) != true)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Acesso negado!");
@@ -79,15 +74,17 @@ namespace WebApiVeterinario.Controllers
             }
             try
             {
-                pets pets = vetDb.pets.Find(id);
-                vetDb.pets.Remove(pets);
+                Services servico = vetDb.Services.Find(id);
+                vetDb.Services.Remove(servico);
                 vetDb.SaveChanges();
-                return Request.CreateResponse(HttpStatusCode.OK, "Pet removido com sucesso");
+                return Request.CreateResponse(HttpStatusCode.OK, "Serviço removido com sucesso");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, e.Message);
             }
+
         }
+
     }
 }

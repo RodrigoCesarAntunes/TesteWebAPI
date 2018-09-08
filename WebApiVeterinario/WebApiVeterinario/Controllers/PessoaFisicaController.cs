@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using WebApiVeterinario.Models;
 using WebApiVeterinario.Encrypt;
+using System.Data.Entity.Validation;
 
 namespace WebApiVeterinario.Controllers
 {
@@ -15,56 +16,78 @@ namespace WebApiVeterinario.Controllers
         private Usuario usuarioObjeto = new Usuario();
 
         [HttpGet]
-        public usuario GetPessoa(string email, string senha)
+        public HttpResponseMessage GetPessoa(string email, string senha)
         {
             
             if(usuarioObjeto.TestarSenha(senha,email)!=true)
             {
-                throw new UnauthorizedAccessException();
-                
+                return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Usuário e/ou senha invalido(s)");
             }
 
             var pessoa = (from user in vetDb.usuario
                             where user.email == email
                             select user).SingleOrDefault();
-            return pessoa;
+            return Request.CreateResponse(HttpStatusCode.OK,pessoa);
         }
 
         [HttpPost]
-        public void AddUser(string nome, string email, string cpf, string cell, int age, string address, string cep, string senha)
+        public HttpResponseMessage AddUser(string nome, string email, string cpf, string cell, int age, string address, string cep, string senha)
         {
-            Password password = new Password();
-
-            string senhaEncriptada = password.EncryptPassword(senha);
-
-            Autenticacao autenticacao = new Autenticacao()
+            try
             {
-                Senha = senhaEncriptada,
-                Email = email,
-            };
-            
-            usuario novoUsuario = new usuario()
-            {
-                nome = nome,
-                email = email,
-                cpf_cnpj = cpf,
-                cellphone = cell,
-                age = age,
-                address = address,
-                cep = cep,
-                Autenticacao = autenticacao,
-            };
+                Password password = new Password();
 
-            cliente_pessoa pessoa = new cliente_pessoa()
-            {
-                usuario = novoUsuario,
-                usuario_cpf_cnpj = cpf,
-                usuario_id = novoUsuario.id,
-            };
-            novoUsuario.cliente_pessoa.Add(pessoa);
+                string senhaEncriptada = password.EncryptPassword(senha);
 
-            vetDb.usuario.Add(novoUsuario);
-            vetDb.SaveChanges();
+                Autenticacao autenticacao = new Autenticacao()
+                {
+                    Senha = senhaEncriptada,
+                    Email = email,
+                };
+
+                usuario novoUsuario = new usuario()
+                {
+                    nome = nome,
+                    email = email,
+                    cpf_cnpj = cpf,
+                    cellphone = cell,
+                    age = age,
+                    address = address,
+                    cep = cep,
+                    Autenticacao = autenticacao,
+                };
+
+                cliente_pessoa pessoa = new cliente_pessoa()
+                {
+                    usuario = novoUsuario,
+                    usuario_cpf_cnpj = cpf,
+                    usuario_id = novoUsuario.id,
+                };
+                novoUsuario.cliente_pessoa.Add(pessoa);
+
+                vetDb.usuario.Add(novoUsuario);
+                vetDb.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK,"Bem vindo!");
+            }
+            catch (DbEntityValidationException e)
+            {
+                String erros = "";
+                foreach (var erro in e.EntityValidationErrors)
+                {
+                    System.Diagnostics.Debug.WriteLine("Entity of type \"{0}\" in state \"{1}\" Erro \n ", erro.Entry.Entity.GetType().Name, erro.Entry.State);
+
+                    foreach (var ve in erro.ValidationErrors)
+                    {
+                        System.Diagnostics.Debug.WriteLine(" - Property: \"{0}\", Erro: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                        erros += String.Format(" - Property: \"{0}\", Erro: \"{1}\"", ve.PropertyName, ve.ErrorMessage);
+                    }
+                }
+                return Request.CreateErrorResponse(HttpStatusCode.NotAcceptable, erros);
+            }
+            catch (Exception e)
+            {
+                return Request.CreateResponse(HttpStatusCode.Unauthorized, e.Message);
+            }
         }
     }
 }

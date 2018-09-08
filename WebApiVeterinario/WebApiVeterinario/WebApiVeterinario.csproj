@@ -107,6 +107,7 @@
     <Compile Include="Controllers\PessoaFisicaController.cs" />
     <Compile Include="Controllers\PessoaJuridicaController.cs" />
     <Compile Include="Controllers\PetController.cs" />
+    <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\Usuario.cs" />
     <Compile Include="Encrypt\Password.cs" />
     <Compile Include="Global.asax.cs">
