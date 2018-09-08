@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VeterinarioServiceModelStoreContainer" CdmEntityContainer="VeterinarioEntities">
+    <EntitySetMapping Name="Autenticacao">
+      <EntityTypeMapping TypeName="VeterinarioServiceModel.Autenticacao">
+        <MappingFragment StoreEntitySet="Autenticacao">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Senha" ColumnName="Senha" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cliente_comercio">
+      <EntityTypeMapping TypeName="VeterinarioServiceModel.cliente_comercio">
+        <MappingFragment StoreEntitySet="cliente_comercio">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cnpj" ColumnName="cnpj" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="usuario_cpf_cnpj" ColumnName="usuario_cpf_cnpj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="cliente_pessoa">
+      <EntityTypeMapping TypeName="VeterinarioServiceModel.cliente_pessoa">
+        <MappingFragment StoreEntitySet="cliente_pessoa">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="usuario_cpf_cnpj" ColumnName="usuario_cpf_cnpj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="consulta">
+      <EntityTypeMapping TypeName="VeterinarioServiceModel.consulta">
+        <MappingFragment StoreEntitySet="consulta">
+          <ScalarProperty Name="consulta_id" ColumnName="consulta_id" />
+          <ScalarProperty Name="data_hora" ColumnName="data_hora" />
+          <ScalarProperty Name="is_valida" ColumnName="is_valida" />
+          <ScalarProperty Name="cliente_comercio_id" ColumnName="cliente_comercio_id" />
+          <ScalarProperty Name="cliente_comercio_cnpj" ColumnName="cliente_comercio_cnpj" />
+          <ScalarProperty Name="preco" ColumnName="preco" />
+          <ScalarProperty Name="pets_pet_id" ColumnName="pets_pet_id" />
+          <ScalarProperty Name="iscancelada" ColumnName="iscancelada" />
+          <ScalarProperty Name="quemcancelou" ColumnName="quemcancelou" />
+          <ScalarProperty Name="motivo" ColumnName="motivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="payment">
+      <EntityTypeMapping TypeName="VeterinarioServiceModel.payment">
+        <MappingFragment StoreEntitySet="payment">
+          <ScalarProperty Name="id_payment" ColumnName="id_payment" />
+          <ScalarProperty Name="card_number" ColumnName="card_number" />
+          <ScalarProperty Name="card_owner" ColumnName="card_owner" />
+          <ScalarProperty Name="expire_date" ColumnName="expire_date" />
+          <ScalarProperty Name="three_digits" ColumnName="three_digits" />
+          <ScalarProperty Name="usuario_id" ColumnName="usuario_id" />
+          <ScalarProperty Name="usuario_cpf_cnpj" ColumnName="usuario_cpf_cnpj" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pets">
+      <EntityTypeMapping TypeName="VeterinarioServiceModel.pets">
+        <MappingFragment StoreEntitySet="pets">
+          <ScalarProperty Name="pet_id" ColumnName="pet_id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="breed" ColumnName="breed" />
+          <ScalarProperty Name="wheight" ColumnName="wheight" />
+          <ScalarProperty Name="size" ColumnName="size" />
+          <ScalarProperty Name="description" ColumnName="description" />
+          <ScalarProperty Name="gender" ColumnName="gender" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="what_pet" ColumnName="what_pet" />
+          <ScalarProperty Name="cliente_pessoa_id" ColumnName="cliente_pessoa_id" />
+          <ScalarProperty Name="cliente_pessoa_cpf" ColumnName="cliente_pessoa_cpf" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="VeterinarioServiceModel.Services">
+        <MappingFragment StoreEntitySet="Services">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="descricao" ColumnName="descricao" />
+          <ScalarProperty Name="Preco" ColumnName="Preco" />
+          <ScalarProperty Name="Cliente_Comercio_ID" ColumnName="Cliente_Comercio_ID" />
+          <ScalarProperty Name="Cliente_Comercio_CNPJ" ColumnName="Cliente_Comercio_CNPJ" />
+          <ScalarProperty Name="Consulta_Consulta_ID" ColumnName="Consulta_Consulta_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="VeterinarioServiceModel.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="nome" ColumnName="nome" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="cpf_cnpj" ColumnName="cpf_cnpj" />
+          <ScalarProperty Name="cellphone" ColumnName="cellphone" />
+          <ScalarProperty Name="telephone" ColumnName="telephone" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="address" ColumnName="address" />
+          <ScalarProperty Name="cep" ColumnName="cep" />
+          <ScalarProperty Name="reference" ColumnName="reference" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
