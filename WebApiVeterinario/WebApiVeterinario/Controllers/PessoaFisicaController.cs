@@ -12,7 +12,7 @@ namespace WebApiVeterinario.Controllers
 {
     public class PessoaFisicaController : ApiController
     {
-        private VeterinarioEntities vetDb = new VeterinarioEntities();
+        private VeterinarioServiceEntities vetDb = new VeterinarioServiceEntities();
         private Usuario usuarioObjeto = new Usuario();
 
         [HttpGet]
@@ -24,14 +24,14 @@ namespace WebApiVeterinario.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Usuário e/ou senha invalido(s)");
             }
 
-            var pessoa = (from user in vetDb.usuario
-                            where user.email == email
+            var pessoa = (from user in vetDb.Usuario
+                            where user.Email == email
                             select user).SingleOrDefault();
             return Request.CreateResponse(HttpStatusCode.OK,pessoa);
         }
 
         [HttpPost]
-        public HttpResponseMessage AddUser(string nome, string email, string cpf, string cell, int age, string address, string cep, string senha)
+        public HttpResponseMessage AddUser(string nome, string email, string cpf, string celular, int idade, string endereco, string cep, string senha)
         {
             try
             {
@@ -45,27 +45,28 @@ namespace WebApiVeterinario.Controllers
                     Email = email,
                 };
 
-                usuario novoUsuario = new usuario()
+                Models.Usuario novoUsuario = new Models.Usuario()
                 {
-                    nome = nome,
-                    email = email,
-                    cpf_cnpj = cpf,
-                    cellphone = cell,
-                    age = age,
-                    address = address,
-                    cep = cep,
+                    Nome = nome,
+                    Email = email,
+                    Cpf_Cnpj = cpf,
+                    Celular = celular,
+                    Idade = idade,
+                    Endereco = endereco,
+                    Cep = cep,
                     Autenticacao = autenticacao,
+                    Data_cadastro = DateTime.Now
                 };
 
-                cliente_pessoa pessoa = new cliente_pessoa()
+                Cliente_Pessoa pessoa = new Cliente_Pessoa()
                 {
-                    usuario = novoUsuario,
-                    usuario_cpf_cnpj = cpf,
-                    usuario_id = novoUsuario.id,
+                    Usuario = novoUsuario,
+                    Usuario_Email = email,
+                    Usuario_id = novoUsuario.ID,
                 };
-                novoUsuario.cliente_pessoa.Add(pessoa);
+                novoUsuario.Cliente_Pessoa.Add(pessoa);
 
-                vetDb.usuario.Add(novoUsuario);
+                vetDb.Usuario.Add(novoUsuario);
                 vetDb.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK,"Bem vindo!");
             }

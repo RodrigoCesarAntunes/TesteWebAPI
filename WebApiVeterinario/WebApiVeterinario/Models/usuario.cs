@@ -12,32 +12,33 @@ namespace WebApiVeterinario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class usuario
+    public partial class Usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public usuario()
+        public Usuario()
         {
-            this.cliente_comercio = new HashSet<cliente_comercio>();
-            this.cliente_pessoa = new HashSet<cliente_pessoa>();
-            this.payment = new HashSet<payment>();
+            this.Cliente_Comercio = new HashSet<Cliente_Comercio>();
+            this.Cliente_Pessoa = new HashSet<Cliente_Pessoa>();
+            this.Pagamento = new HashSet<Pagamento>();
         }
     
-        public int id { get; set; }
-        public string nome { get; set; }
-        public string email { get; set; }
-        public string cpf_cnpj { get; set; }
-        public string cellphone { get; set; }
-        public Nullable<int> age { get; set; }
-        public string address { get; set; }
-        public string cep { get; set; }
-        public string foto { get; set; }
+        public int ID { get; set; }
+        public string Nome { get; set; }
+        public string Email { get; set; }
+        public string Cpf_Cnpj { get; set; }
+        public string Celular { get; set; }
+        public Nullable<int> Idade { get; set; }
+        public string Endereco { get; set; }
+        public string Cep { get; set; }
+        public string Foto { get; set; }
+        public Nullable<System.DateTime> Data_cadastro { get; set; }
     
         public virtual Autenticacao Autenticacao { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cliente_comercio> cliente_comercio { get; set; }
+        public virtual ICollection<Cliente_Comercio> Cliente_Comercio { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<cliente_pessoa> cliente_pessoa { get; set; }
+        public virtual ICollection<Cliente_Pessoa> Cliente_Pessoa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<payment> payment { get; set; }
+        public virtual ICollection<Pagamento> Pagamento { get; set; }
     }
 }

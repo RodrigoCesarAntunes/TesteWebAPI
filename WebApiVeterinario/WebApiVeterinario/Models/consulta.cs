@@ -12,27 +12,28 @@ namespace WebApiVeterinario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class consulta
+    public partial class Consulta
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public consulta()
+        public Consulta()
         {
             this.Services = new HashSet<Services>();
         }
     
-        public int consulta_id { get; set; }
-        public Nullable<System.DateTime> data_hora { get; set; }
-        public Nullable<bool> is_valida { get; set; }
-        public int cliente_comercio_id { get; set; }
-        public string cliente_comercio_cnpj { get; set; }
-        public Nullable<decimal> preco { get; set; }
-        public int pets_pet_id { get; set; }
-        public Nullable<bool> iscancelada { get; set; }
-        public string quemcancelou { get; set; }
-        public string motivo { get; set; }
+        public int Consulta_id { get; set; }
+        public Nullable<System.DateTime> Data_Agendamento { get; set; }
+        public Nullable<System.DateTime> Data_Hora { get; set; }
+        public Nullable<bool> Is_Valida { get; set; }
+        public int Cliente_comercio_id { get; set; }
+        public string Cliente_comercio_Email { get; set; }
+        public Nullable<decimal> Preco { get; set; }
+        public int Pets_pet_id { get; set; }
+        public Nullable<bool> IsCancelada { get; set; }
+        public string Quemcancelou { get; set; }
+        public string Motivo { get; set; }
     
-        public virtual cliente_comercio cliente_comercio { get; set; }
-        public virtual pets pets { get; set; }
+        public virtual Cliente_Comercio Cliente_Comercio { get; set; }
+        public virtual Pets Pets { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Services> Services { get; set; }
     }

@@ -11,7 +11,7 @@ namespace WebApiVeterinario.Controllers
 {
     public class ServicesController : ApiController
     {
-        private VeterinarioEntities vetDb = new VeterinarioEntities();
+        private VeterinarioServiceEntities vetDb = new VeterinarioServiceEntities();
         private Usuario usuarioObjeto = new Usuario();
 
         [HttpPost]
@@ -24,17 +24,17 @@ namespace WebApiVeterinario.Controllers
                     return Request.CreateErrorResponse(HttpStatusCode.Unauthorized, "Usuário e/ou senha invalido(s)");
                 }
 
-                cliente_comercio pj = (from comercio in vetDb.cliente_comercio
-                                       where comercio.usuario.email == email
+                Cliente_Comercio pj = (from comercio in vetDb.Cliente_Comercio
+                                       where comercio.Usuario_Email == email
                                        select comercio).Single();
 
                 Services service = new Services()
                 {
-                    nome = nome,
-                    descricao = descricao,
+                    Nome = nome,
+                    Descricao = descricao,
                     Preco = preco,
-                    Cliente_Comercio_CNPJ = pj.usuario_cpf_cnpj,
-                    Cliente_Comercio_ID = pj.id
+                    Cliente_Comercio_Email = pj.Usuario_Email,
+                    Cliente_Comercio_ID = pj.ID
                 };
 
                 pj.Services.Add(service);

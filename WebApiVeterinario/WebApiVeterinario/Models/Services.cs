@@ -14,15 +14,15 @@ namespace WebApiVeterinario.Models
     
     public partial class Services
     {
-        public int id { get; set; }
-        public string nome { get; set; }
-        public string descricao { get; set; }
+        public int ID { get; set; }
+        public string Nome { get; set; }
+        public string Descricao { get; set; }
         public Nullable<decimal> Preco { get; set; }
         public int Cliente_Comercio_ID { get; set; }
-        public string Cliente_Comercio_CNPJ { get; set; }
+        public string Cliente_Comercio_Email { get; set; }
         public int Consulta_Consulta_ID { get; set; }
     
-        public virtual cliente_comercio cliente_comercio { get; set; }
-        public virtual consulta consulta { get; set; }
+        public virtual Cliente_Comercio Cliente_Comercio { get; set; }
+        public virtual Consulta Consulta { get; set; }
     }
 }

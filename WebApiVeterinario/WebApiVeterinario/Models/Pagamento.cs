@@ -12,16 +12,16 @@ namespace WebApiVeterinario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class payment
+    public partial class Pagamento
     {
-        public int id_payment { get; set; }
-        public string card_number { get; set; }
-        public string card_owner { get; set; }
-        public Nullable<System.DateTime> expire_date { get; set; }
-        public string four_digits { get; set; }
-        public int usuario_id { get; set; }
-        public string usuario_cpf_cnpj { get; set; }
+        public int ID_Pagamento { get; set; }
+        public string Numero_Cartao { get; set; }
+        public string Proprietario_Cartao { get; set; }
+        public Nullable<System.DateTime> Data_Validade { get; set; }
+        public string CVC { get; set; }
+        public int Usuario_id { get; set; }
+        public string Usuario_Email { get; set; }
     
-        public virtual usuario usuario { get; set; }
+        public virtual Usuario Usuario { get; set; }
     }
 }

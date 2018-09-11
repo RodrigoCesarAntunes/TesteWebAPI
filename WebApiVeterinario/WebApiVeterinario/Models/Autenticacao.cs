@@ -17,14 +17,14 @@ namespace WebApiVeterinario.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Autenticacao()
         {
-            this.usuario = new HashSet<usuario>();
+            this.Usuario = new HashSet<Usuario>();
         }
     
-        public int id { get; set; }
+        public int ID { get; set; }
         public string Senha { get; set; }
         public string Email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuario> usuario { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

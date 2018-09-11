@@ -12,10 +12,10 @@ namespace WebApiVeterinario.Controllers
     public class PetController : ApiController
     {
         private Usuario usuarioObjeto = new Usuario();
-        private VeterinarioEntities vetDb = new VeterinarioEntities();
+        private VeterinarioServiceEntities vetDb = new VeterinarioServiceEntities();
 
         [HttpPost]
-        public HttpResponseMessage AddPet(string email, string senha, string nome, string breed, decimal peso, string tamanho,string descricao,string genero, string idade, string especie)
+        public HttpResponseMessage AddPet(string email, string senha, string nome, string raca, decimal peso, string tamanho,string descricao,string genero, int idade, string especie)
         {
         
             if (usuarioObjeto.TestarSenha(senha, email) != true)
@@ -24,25 +24,25 @@ namespace WebApiVeterinario.Controllers
 
             }
             
-            cliente_pessoa dono = (from pessoa in vetDb.cliente_pessoa
-                                   where pessoa.usuario.email == email
+            Cliente_Pessoa dono = (from pessoa in vetDb.Cliente_Pessoa
+                                   where pessoa.Usuario_Email == email
                                    select pessoa).Single();
 
-            pets pet = new pets()
+            Pets pet = new Pets()
             {
-                nome = nome,
-                what_pet = especie,
-                breed = breed,
-                wheight = peso,
-                size = tamanho,
-                description = descricao,
-                gender = genero,
-                age = 4,
-                cliente_pessoa_cpf = dono.usuario_cpf_cnpj,
-                cliente_pessoa_id = dono.id,
+                Nome = nome,
+                What_pet = especie,
+                Raca = raca,
+                Peso = peso,
+                Tamanho = tamanho,
+                Descricao = descricao,
+                Genero = genero,
+                Idade = idade,
+                Cliente_pessoa_Email = dono.Usuario_Email,
+                Cliente_pessoa_id = dono.ID,
             };
 
-            dono.pets.Add(pet);
+            dono.Pets.Add(pet);
             try
             {
                 vetDb.SaveChanges();
@@ -79,8 +79,8 @@ namespace WebApiVeterinario.Controllers
             }
             try
             {
-                pets pets = vetDb.pets.Find(id);
-                vetDb.pets.Remove(pets);
+                Pets pets = vetDb.Pets.Find(id);
+                vetDb.Pets.Remove(pets);
                 vetDb.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK, "Pet removido com sucesso");
             }

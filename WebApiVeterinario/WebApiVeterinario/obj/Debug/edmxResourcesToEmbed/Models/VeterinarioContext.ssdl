@@ -4,242 +4,244 @@
     <Key>
       <PropertyRef Name="Email" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Senha" Type="char" MaxLength="256" Nullable="false" />
     <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
-  <EntityType Name="cliente_comercio">
+  <EntityType Name="Cliente_Comercio">
     <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="cnpj" />
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Usuario_Email" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="cnpj" Type="varchar" MaxLength="25" Nullable="false" />
-    <Property Name="usuario_id" Type="int" Nullable="false" />
-    <Property Name="usuario_cpf_cnpj" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Saldo_Em_Conta" Type="decimal" Precision="14" Scale="2" />
+    <Property Name="Usuario_id" Type="int" Nullable="false" />
+    <Property Name="Usuario_Email" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
-  <EntityType Name="cliente_pessoa">
+  <EntityType Name="Cliente_Pessoa">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="usuario_id" Type="int" Nullable="false" />
-    <Property Name="usuario_cpf_cnpj" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Usuario_id" Type="int" Nullable="false" />
+    <Property Name="Usuario_Email" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
-  <EntityType Name="consulta">
+  <EntityType Name="Consulta">
     <Key>
-      <PropertyRef Name="consulta_id" />
+      <PropertyRef Name="Consulta_id" />
     </Key>
-    <Property Name="consulta_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="data_hora" Type="datetime" />
-    <Property Name="is_valida" Type="bit" />
-    <Property Name="cliente_comercio_id" Type="int" Nullable="false" />
-    <Property Name="cliente_comercio_cnpj" Type="varchar" MaxLength="25" Nullable="false" />
-    <Property Name="preco" Type="decimal" Precision="10" Scale="2" />
-    <Property Name="pets_pet_id" Type="int" Nullable="false" />
-    <Property Name="iscancelada" Type="bit" />
-    <Property Name="quemcancelou" Type="varchar" MaxLength="20" />
-    <Property Name="motivo" Type="varchar" MaxLength="250" />
+    <Property Name="Consulta_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Data_Agendamento" Type="datetime" />
+    <Property Name="Data_Hora" Type="datetime" />
+    <Property Name="Is_Valida" Type="bit" />
+    <Property Name="Cliente_comercio_id" Type="int" Nullable="false" />
+    <Property Name="Cliente_comercio_Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Preco" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Pets_pet_id" Type="int" Nullable="false" />
+    <Property Name="IsCancelada" Type="bit" />
+    <Property Name="Quemcancelou" Type="varchar" MaxLength="20" />
+    <Property Name="Motivo" Type="varchar" MaxLength="250" />
   </EntityType>
-  <EntityType Name="payment">
+  <EntityType Name="Pagamento">
     <Key>
-      <PropertyRef Name="id_payment" />
+      <PropertyRef Name="ID_Pagamento" />
     </Key>
-    <Property Name="id_payment" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="card_number" Type="varchar" MaxLength="30" />
-    <Property Name="card_owner" Type="varchar" MaxLength="30" />
-    <Property Name="expire_date" Type="date" />
-    <Property Name="four_digits" Type="varchar" MaxLength="4" />
-    <Property Name="usuario_id" Type="int" Nullable="false" />
-    <Property Name="usuario_cpf_cnpj" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="ID_Pagamento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Numero_Cartao" Type="varchar" MaxLength="30" />
+    <Property Name="Proprietario_Cartao" Type="varchar" MaxLength="30" />
+    <Property Name="Data_Validade" Type="date" />
+    <Property Name="CVC" Type="varchar" MaxLength="3" />
+    <Property Name="Usuario_id" Type="int" Nullable="false" />
+    <Property Name="Usuario_Email" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="Pet_fotos">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="fotoCaminho" Type="varchar" MaxLength="200" />
-    <Property Name="pet_id" Type="int" Nullable="false" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FotoCaminho" Type="varchar" MaxLength="200" />
+    <Property Name="Pet_id" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="pets">
+  <EntityType Name="Pets">
     <Key>
-      <PropertyRef Name="pet_id" />
+      <PropertyRef Name="Pet_ID" />
     </Key>
-    <Property Name="pet_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nome" Type="varchar" MaxLength="100" />
-    <Property Name="what_pet" Type="varchar" MaxLength="50" />
-    <Property Name="breed" Type="varchar" MaxLength="50" />
-    <Property Name="wheight" Type="decimal" Precision="6" Scale="3" />
-    <Property Name="size" Type="varchar" MaxLength="20" />
-    <Property Name="description" Type="varchar" MaxLength="250" />
-    <Property Name="gender" Type="varchar" MaxLength="1" />
-    <Property Name="age" Type="int" />
-    <Property Name="cliente_pessoa_id" Type="int" Nullable="false" />
-    <Property Name="cliente_pessoa_cpf" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Pet_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" />
+    <Property Name="What_pet" Type="varchar" MaxLength="50" />
+    <Property Name="Raca" Type="varchar" MaxLength="50" />
+    <Property Name="Peso" Type="decimal" Precision="6" Scale="3" />
+    <Property Name="Tamanho" Type="varchar" MaxLength="20" />
+    <Property Name="Descricao" Type="varchar" MaxLength="250" />
+    <Property Name="Genero" Type="varchar" MaxLength="1" />
+    <Property Name="Idade" Type="int" />
+    <Property Name="Cliente_pessoa_id" Type="int" Nullable="false" />
+    <Property Name="Cliente_pessoa_Email" Type="varchar" MaxLength="100" Nullable="false" />
   </EntityType>
   <EntityType Name="Services">
     <Key>
-      <PropertyRef Name="id" />
+      <PropertyRef Name="ID" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nome" Type="varchar" MaxLength="100" />
-    <Property Name="descricao" Type="varchar(max)" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" />
+    <Property Name="Descricao" Type="varchar(max)" />
     <Property Name="Preco" Type="decimal" Precision="10" Scale="2" />
     <Property Name="Cliente_Comercio_ID" Type="int" Nullable="false" />
-    <Property Name="Cliente_Comercio_CNPJ" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Cliente_Comercio_Email" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Consulta_Consulta_ID" Type="int" Nullable="false" />
   </EntityType>
-  <EntityType Name="usuario">
+  <EntityType Name="Usuario">
     <Key>
-      <PropertyRef Name="id" />
-      <PropertyRef Name="cpf_cnpj" />
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="Email" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="nome" Type="varchar" MaxLength="100" />
-    <Property Name="email" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="cpf_cnpj" Type="varchar" MaxLength="100" Nullable="false" />
-    <Property Name="cellphone" Type="varchar" MaxLength="30" />
-    <Property Name="age" Type="int" />
-    <Property Name="address" Type="varchar" MaxLength="250" />
-    <Property Name="cep" Type="varchar" MaxLength="20" />
-    <Property Name="foto" Type="varchar" MaxLength="200" />
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nome" Type="varchar" MaxLength="100" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Cpf_Cnpj" Type="varchar" MaxLength="100" />
+    <Property Name="Celular" Type="varchar" MaxLength="30" />
+    <Property Name="Idade" Type="int" />
+    <Property Name="Endereco" Type="varchar" MaxLength="250" />
+    <Property Name="Cep" Type="varchar" MaxLength="20" />
+    <Property Name="Foto" Type="varchar" MaxLength="200" />
+    <Property Name="Data_cadastro" Type="datetime" />
   </EntityType>
   <Association Name="cliente_comercio_usuario_fk">
-    <End Role="usuario" Type="Self.usuario" Multiplicity="1">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="cliente_comercio" Type="Self.cliente_comercio" Multiplicity="*" />
+    <End Role="Cliente_Comercio" Type="Self.Cliente_Comercio" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="usuario">
-        <PropertyRef Name="id" />
-        <PropertyRef Name="cpf_cnpj" />
+      <Principal Role="Usuario">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="Email" />
       </Principal>
-      <Dependent Role="cliente_comercio">
-        <PropertyRef Name="usuario_id" />
-        <PropertyRef Name="usuario_cpf_cnpj" />
+      <Dependent Role="Cliente_Comercio">
+        <PropertyRef Name="Usuario_id" />
+        <PropertyRef Name="Usuario_Email" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="cliente_pessoa_usuario_fk">
-    <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
-    <End Role="cliente_pessoa" Type="Self.cliente_pessoa" Multiplicity="*" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1" />
+    <End Role="Cliente_Pessoa" Type="Self.Cliente_Pessoa" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="usuario">
-        <PropertyRef Name="id" />
-        <PropertyRef Name="cpf_cnpj" />
+      <Principal Role="Usuario">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="Email" />
       </Principal>
-      <Dependent Role="cliente_pessoa">
-        <PropertyRef Name="usuario_id" />
-        <PropertyRef Name="usuario_cpf_cnpj" />
+      <Dependent Role="Cliente_Pessoa">
+        <PropertyRef Name="Usuario_id" />
+        <PropertyRef Name="Usuario_Email" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="consulta_cliente_comercio_fk">
-    <End Role="cliente_comercio" Type="Self.cliente_comercio" Multiplicity="1">
+    <End Role="Cliente_Comercio" Type="Self.Cliente_Comercio" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="consulta" Type="Self.consulta" Multiplicity="*" />
+    <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="cliente_comercio">
-        <PropertyRef Name="id" />
-        <PropertyRef Name="cnpj" />
+      <Principal Role="Cliente_Comercio">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="Usuario_Email" />
       </Principal>
-      <Dependent Role="consulta">
-        <PropertyRef Name="cliente_comercio_id" />
-        <PropertyRef Name="cliente_comercio_cnpj" />
+      <Dependent Role="Consulta">
+        <PropertyRef Name="Cliente_comercio_id" />
+        <PropertyRef Name="Cliente_comercio_Email" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="consulta_pets_fk">
-    <End Role="pets" Type="Self.pets" Multiplicity="1">
+    <End Role="Pets" Type="Self.Pets" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="consulta" Type="Self.consulta" Multiplicity="*" />
+    <End Role="Consulta" Type="Self.Consulta" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="pets">
-        <PropertyRef Name="pet_id" />
+      <Principal Role="Pets">
+        <PropertyRef Name="Pet_ID" />
       </Principal>
-      <Dependent Role="consulta">
-        <PropertyRef Name="pets_pet_id" />
+      <Dependent Role="Consulta">
+        <PropertyRef Name="Pets_pet_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__Pet_fotos__pet_i__4D2A7347">
-    <End Role="pets" Type="Self.pets" Multiplicity="1" />
+  <Association Name="FK__Pet_fotos__Pet_i__60FC61CA">
+    <End Role="Pets" Type="Self.Pets" Multiplicity="1" />
     <End Role="Pet_fotos" Type="Self.Pet_fotos" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="pets">
-        <PropertyRef Name="pet_id" />
+      <Principal Role="Pets">
+        <PropertyRef Name="Pet_ID" />
       </Principal>
       <Dependent Role="Pet_fotos">
-        <PropertyRef Name="pet_id" />
+        <PropertyRef Name="Pet_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__usuario__foto__54CB950F">
+  <Association Name="FK__Usuario__Data_ca__689D8392">
     <End Role="Autenticacao" Type="Self.Autenticacao" Multiplicity="1" />
-    <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Autenticacao">
         <PropertyRef Name="Email" />
       </Principal>
-      <Dependent Role="usuario">
-        <PropertyRef Name="email" />
+      <Dependent Role="Usuario">
+        <PropertyRef Name="Email" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="payment_usuario_fk">
-    <End Role="usuario" Type="Self.usuario" Multiplicity="1">
+  <Association Name="Pagamento_Usuario_fk">
+    <End Role="Usuario" Type="Self.Usuario" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="payment" Type="Self.payment" Multiplicity="*" />
+    <End Role="Pagamento" Type="Self.Pagamento" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="usuario">
-        <PropertyRef Name="id" />
-        <PropertyRef Name="cpf_cnpj" />
+      <Principal Role="Usuario">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="Email" />
       </Principal>
-      <Dependent Role="payment">
-        <PropertyRef Name="usuario_id" />
-        <PropertyRef Name="usuario_cpf_cnpj" />
+      <Dependent Role="Pagamento">
+        <PropertyRef Name="Usuario_id" />
+        <PropertyRef Name="Usuario_Email" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="pets_cliente_pessoa_fk">
-    <End Role="cliente_pessoa" Type="Self.cliente_pessoa" Multiplicity="1">
+    <End Role="Cliente_Pessoa" Type="Self.Cliente_Pessoa" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
-    <End Role="pets" Type="Self.pets" Multiplicity="*" />
+    <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="cliente_pessoa">
-        <PropertyRef Name="id" />
+      <Principal Role="Cliente_Pessoa">
+        <PropertyRef Name="ID" />
       </Principal>
-      <Dependent Role="pets">
-        <PropertyRef Name="cliente_pessoa_id" />
+      <Dependent Role="Pets">
+        <PropertyRef Name="Cliente_pessoa_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="services_cliente_comercio_fk">
-    <End Role="cliente_comercio" Type="Self.cliente_comercio" Multiplicity="1">
+    <End Role="Cliente_Comercio" Type="Self.Cliente_Comercio" Multiplicity="1">
       <OnDelete Action="Cascade" />
     </End>
     <End Role="Services" Type="Self.Services" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="cliente_comercio">
-        <PropertyRef Name="id" />
-        <PropertyRef Name="cnpj" />
+      <Principal Role="Cliente_Comercio">
+        <PropertyRef Name="ID" />
+        <PropertyRef Name="Usuario_Email" />
       </Principal>
       <Dependent Role="Services">
         <PropertyRef Name="Cliente_Comercio_ID" />
-        <PropertyRef Name="Cliente_Comercio_CNPJ" />
+        <PropertyRef Name="Cliente_Comercio_Email" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
   <Association Name="services_consulta_fk">
-    <End Role="consulta" Type="Self.consulta" Multiplicity="1" />
+    <End Role="Consulta" Type="Self.Consulta" Multiplicity="1" />
     <End Role="Services" Type="Self.Services" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="consulta">
-        <PropertyRef Name="consulta_id" />
+      <Principal Role="Consulta">
+        <PropertyRef Name="Consulta_id" />
       </Principal>
       <Dependent Role="Services">
         <PropertyRef Name="Consulta_Consulta_ID" />
@@ -248,52 +250,52 @@
   </Association>
   <EntityContainer Name="VeterinarioServiceModelStoreContainer">
     <EntitySet Name="Autenticacao" EntityType="Self.Autenticacao" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="cliente_comercio" EntityType="Self.cliente_comercio" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="cliente_pessoa" EntityType="Self.cliente_pessoa" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="consulta" EntityType="Self.consulta" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="payment" EntityType="Self.payment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente_Comercio" EntityType="Self.Cliente_Comercio" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Cliente_Pessoa" EntityType="Self.Cliente_Pessoa" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Consulta" EntityType="Self.Consulta" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pagamento" EntityType="Self.Pagamento" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Pet_fotos" EntityType="Self.Pet_fotos" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="pets" EntityType="Self.pets" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pets" EntityType="Self.Pets" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Services" EntityType="Self.Services" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="usuario" EntityType="Self.usuario" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="cliente_comercio_usuario_fk" Association="Self.cliente_comercio_usuario_fk">
-      <End Role="usuario" EntitySet="usuario" />
-      <End Role="cliente_comercio" EntitySet="cliente_comercio" />
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Cliente_Comercio" EntitySet="Cliente_Comercio" />
     </AssociationSet>
     <AssociationSet Name="cliente_pessoa_usuario_fk" Association="Self.cliente_pessoa_usuario_fk">
-      <End Role="usuario" EntitySet="usuario" />
-      <End Role="cliente_pessoa" EntitySet="cliente_pessoa" />
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Cliente_Pessoa" EntitySet="Cliente_Pessoa" />
     </AssociationSet>
     <AssociationSet Name="consulta_cliente_comercio_fk" Association="Self.consulta_cliente_comercio_fk">
-      <End Role="cliente_comercio" EntitySet="cliente_comercio" />
-      <End Role="consulta" EntitySet="consulta" />
+      <End Role="Cliente_Comercio" EntitySet="Cliente_Comercio" />
+      <End Role="Consulta" EntitySet="Consulta" />
     </AssociationSet>
     <AssociationSet Name="consulta_pets_fk" Association="Self.consulta_pets_fk">
-      <End Role="pets" EntitySet="pets" />
-      <End Role="consulta" EntitySet="consulta" />
+      <End Role="Pets" EntitySet="Pets" />
+      <End Role="Consulta" EntitySet="Consulta" />
     </AssociationSet>
-    <AssociationSet Name="FK__Pet_fotos__pet_i__4D2A7347" Association="Self.FK__Pet_fotos__pet_i__4D2A7347">
-      <End Role="pets" EntitySet="pets" />
+    <AssociationSet Name="FK__Pet_fotos__Pet_i__60FC61CA" Association="Self.FK__Pet_fotos__Pet_i__60FC61CA">
+      <End Role="Pets" EntitySet="Pets" />
       <End Role="Pet_fotos" EntitySet="Pet_fotos" />
     </AssociationSet>
-    <AssociationSet Name="FK__usuario__foto__54CB950F" Association="Self.FK__usuario__foto__54CB950F">
+    <AssociationSet Name="FK__Usuario__Data_ca__689D8392" Association="Self.FK__Usuario__Data_ca__689D8392">
       <End Role="Autenticacao" EntitySet="Autenticacao" />
-      <End Role="usuario" EntitySet="usuario" />
+      <End Role="Usuario" EntitySet="Usuario" />
     </AssociationSet>
-    <AssociationSet Name="payment_usuario_fk" Association="Self.payment_usuario_fk">
-      <End Role="usuario" EntitySet="usuario" />
-      <End Role="payment" EntitySet="payment" />
+    <AssociationSet Name="Pagamento_Usuario_fk" Association="Self.Pagamento_Usuario_fk">
+      <End Role="Usuario" EntitySet="Usuario" />
+      <End Role="Pagamento" EntitySet="Pagamento" />
     </AssociationSet>
     <AssociationSet Name="pets_cliente_pessoa_fk" Association="Self.pets_cliente_pessoa_fk">
-      <End Role="cliente_pessoa" EntitySet="cliente_pessoa" />
-      <End Role="pets" EntitySet="pets" />
+      <End Role="Cliente_Pessoa" EntitySet="Cliente_Pessoa" />
+      <End Role="Pets" EntitySet="Pets" />
     </AssociationSet>
     <AssociationSet Name="services_cliente_comercio_fk" Association="Self.services_cliente_comercio_fk">
-      <End Role="cliente_comercio" EntitySet="cliente_comercio" />
+      <End Role="Cliente_Comercio" EntitySet="Cliente_Comercio" />
       <End Role="Services" EntitySet="Services" />
     </AssociationSet>
     <AssociationSet Name="services_consulta_fk" Association="Self.services_consulta_fk">
-      <End Role="consulta" EntitySet="consulta" />
+      <End Role="Consulta" EntitySet="Consulta" />
       <End Role="Services" EntitySet="Services" />
     </AssociationSet>
   </EntityContainer>

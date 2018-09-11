@@ -116,19 +116,19 @@
     <Compile Include="Models\Autenticacao.cs">
       <DependentUpon>VeterinarioContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\cliente_comercio.cs">
+    <Compile Include="Models\Cliente_Comercio.cs">
       <DependentUpon>VeterinarioContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\cliente_pessoa.cs">
+    <Compile Include="Models\Cliente_Pessoa.cs">
       <DependentUpon>VeterinarioContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\consulta.cs">
+    <Compile Include="Models\Consulta.cs">
       <DependentUpon>VeterinarioContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\payment.cs">
+    <Compile Include="Models\Pagamento.cs">
       <DependentUpon>VeterinarioContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\pets.cs">
+    <Compile Include="Models\Pets.cs">
       <DependentUpon>VeterinarioContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Pet_fotos.cs">
@@ -137,7 +137,7 @@
     <Compile Include="Models\Services.cs">
       <DependentUpon>VeterinarioContext.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\usuario.cs">
+    <Compile Include="Models\Usuario.cs">
       <DependentUpon>VeterinarioContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\VeterinarioContext.Context.cs">

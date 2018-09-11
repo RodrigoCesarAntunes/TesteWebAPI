@@ -12,30 +12,30 @@ namespace WebApiVeterinario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class pets
+    public partial class Pets
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public pets()
+        public Pets()
         {
-            this.consulta = new HashSet<consulta>();
+            this.Consulta = new HashSet<Consulta>();
             this.Pet_fotos = new HashSet<Pet_fotos>();
         }
     
-        public int pet_id { get; set; }
-        public string nome { get; set; }
-        public string what_pet { get; set; }
-        public string breed { get; set; }
-        public Nullable<decimal> wheight { get; set; }
-        public string size { get; set; }
-        public string description { get; set; }
-        public string gender { get; set; }
-        public Nullable<int> age { get; set; }
-        public int cliente_pessoa_id { get; set; }
-        public string cliente_pessoa_cpf { get; set; }
+        public int Pet_ID { get; set; }
+        public string Nome { get; set; }
+        public string What_pet { get; set; }
+        public string Raca { get; set; }
+        public Nullable<decimal> Peso { get; set; }
+        public string Tamanho { get; set; }
+        public string Descricao { get; set; }
+        public string Genero { get; set; }
+        public Nullable<int> Idade { get; set; }
+        public int Cliente_pessoa_id { get; set; }
+        public string Cliente_pessoa_Email { get; set; }
     
-        public virtual cliente_pessoa cliente_pessoa { get; set; }
+        public virtual Cliente_Pessoa Cliente_Pessoa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<consulta> consulta { get; set; }
+        public virtual ICollection<Consulta> Consulta { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pet_fotos> Pet_fotos { get; set; }
     }

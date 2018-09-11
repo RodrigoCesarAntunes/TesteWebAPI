@@ -10,7 +10,7 @@ namespace WebApiVeterinario.Controllers
 {
     public class Usuario
     {
-        private VeterinarioEntities vetDb = new VeterinarioEntities();
+        private VeterinarioServiceEntities vetDb = new VeterinarioServiceEntities();
 
         public bool? TestarSenha(string _senha, string _email)
         {

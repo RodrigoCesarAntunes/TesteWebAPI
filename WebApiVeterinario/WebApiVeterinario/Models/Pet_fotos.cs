@@ -14,10 +14,10 @@ namespace WebApiVeterinario.Models
     
     public partial class Pet_fotos
     {
-        public int id { get; set; }
-        public string fotoCaminho { get; set; }
-        public int pet_id { get; set; }
+        public int ID { get; set; }
+        public string FotoCaminho { get; set; }
+        public int Pet_id { get; set; }
     
-        public virtual pets pets { get; set; }
+        public virtual Pets Pets { get; set; }
     }
 }

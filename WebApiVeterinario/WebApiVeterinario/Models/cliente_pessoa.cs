@@ -12,20 +12,20 @@ namespace WebApiVeterinario.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class cliente_pessoa
+    public partial class Cliente_Pessoa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public cliente_pessoa()
+        public Cliente_Pessoa()
         {
-            this.pets = new HashSet<pets>();
+            this.Pets = new HashSet<Pets>();
         }
     
-        public int id { get; set; }
-        public int usuario_id { get; set; }
-        public string usuario_cpf_cnpj { get; set; }
+        public int ID { get; set; }
+        public int Usuario_id { get; set; }
+        public string Usuario_Email { get; set; }
     
-        public virtual usuario usuario { get; set; }
+        public virtual Usuario Usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pets> pets { get; set; }
+        public virtual ICollection<Pets> Pets { get; set; }
     }
 }

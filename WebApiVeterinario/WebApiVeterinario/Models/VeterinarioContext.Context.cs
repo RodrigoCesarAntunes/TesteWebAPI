@@ -13,10 +13,10 @@ namespace WebApiVeterinario.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class VeterinarioEntities : DbContext
+    public partial class VeterinarioServiceEntities : DbContext
     {
-        public VeterinarioEntities()
-            : base("name=VeterinarioEntities")
+        public VeterinarioServiceEntities()
+            : base("name=VeterinarioServiceEntities")
         {
         }
     
@@ -26,13 +26,13 @@ namespace WebApiVeterinario.Models
         }
     
         public virtual DbSet<Autenticacao> Autenticacao { get; set; }
-        public virtual DbSet<cliente_comercio> cliente_comercio { get; set; }
-        public virtual DbSet<cliente_pessoa> cliente_pessoa { get; set; }
-        public virtual DbSet<consulta> consulta { get; set; }
-        public virtual DbSet<payment> payment { get; set; }
+        public virtual DbSet<Cliente_Comercio> Cliente_Comercio { get; set; }
+        public virtual DbSet<Cliente_Pessoa> Cliente_Pessoa { get; set; }
+        public virtual DbSet<Consulta> Consulta { get; set; }
+        public virtual DbSet<Pagamento> Pagamento { get; set; }
         public virtual DbSet<Pet_fotos> Pet_fotos { get; set; }
-        public virtual DbSet<pets> pets { get; set; }
+        public virtual DbSet<Pets> Pets { get; set; }
         public virtual DbSet<Services> Services { get; set; }
-        public virtual DbSet<usuario> usuario { get; set; }
+        public virtual DbSet<Usuario> Usuario { get; set; }
     }
 }
