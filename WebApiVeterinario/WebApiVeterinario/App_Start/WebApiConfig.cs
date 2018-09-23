@@ -13,7 +13,7 @@ namespace WebApiVeterinario
 
             // Rotas da API da Web
             config.MapHttpAttributeRoutes();
-
+            
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
